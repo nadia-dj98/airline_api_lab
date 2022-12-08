@@ -35,8 +35,11 @@ public class PassengerController {
 
     // Add a new passenger
     @PostMapping
-    public ResponseEntity<Passenger> addNewPassenger(){
-        return null;
+    public ResponseEntity<Passenger> addNewPassenger(@RequestBody Passenger passenger){
+        Passenger passengers;
+        passengers = passengerService.addNewPassenger(passenger);
+        return new ResponseEntity<>(passenger, HttpStatus.CREATED);
+
     }
 
 }

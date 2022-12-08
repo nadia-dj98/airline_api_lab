@@ -29,4 +29,11 @@ public class PassengerService {
     public Optional<Passenger> getOnePassenger(Long id){
         return passengerRepository.findById(id);
     }
+
+    public Passenger addNewPassenger(Passenger passenger) {
+        passengerRepository.save(passenger);
+        return passenger;
+    }
+
+
 }
