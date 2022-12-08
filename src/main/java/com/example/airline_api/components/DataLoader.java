@@ -43,6 +43,7 @@ public class DataLoader implements ApplicationRunner {
 
         Passenger passenger2 = new Passenger("Yasmine", "yasmine.dj@aol.com");
         passenger2.addPassengerToFlight(flightToMalaga);
+        passenger2.addPassengerToFlight(flightToBilbao);
         passengerRepository.save(passenger2);
 
         //Flights to Algeria
