@@ -27,4 +27,10 @@ public class FlightService {
     public Optional<Flight> displaySpecificFlight(Long id){
         return flightRepository.findById(id);
     }
+
+    public Flight addNewFlight(Flight flight) {
+
+        flightRepository.save(flight);
+        return flight;
+    }
 }
