@@ -1,6 +1,7 @@
 package com.example.airline_api.controllers;
 
 import com.example.airline_api.models.Flight;
+import com.example.airline_api.models.Passenger;
 import com.example.airline_api.services.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,21 +37,22 @@ public class FlightController {
     // Add details of a new flight
     @PostMapping
     public ResponseEntity<Flight> addNewFlight(@RequestBody Flight flight){
-        Flight flights;
-        flights = flightService.addNewFlight(flight);
-        return new ResponseEntity<>(flights, HttpStatus.CREATED);
+        Flight savedFlight = flightService.addNewFlight(flight);
+        return new ResponseEntity<>(savedFlight, HttpStatus.CREATED);
     }
 
-    // Book passenger on a flight
-    @PatchMapping(value = "/{id}")
-    public ResponseEntity<Flight> addPassengerToFlight(){
-        return null;
+    @PatchMapping(value = "/{flightId}/{passengerId}")
+    public ResponseEntity<Flight> bookPassengerOnFlight(@PathVariable long flightId, @PathVariable long passengerId) {
+        Flight flights;
+        flights = flightService.bookPassengerOntoFlight(flightId, passengerId);
+        return new ResponseEntity<>(flights, HttpStatus.CREATED);
     }
 
     // Cancel flight
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity cancelFlight(){
-        return null;
+    public  ResponseEntity cancelFlight(@PathVariable Long id){
+        flightService.cancelFlight(id);
+        return new ResponseEntity(null, HttpStatus.NO_CONTENT);
     }
 
 }
